@@ -3,6 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Dessin d'une platine en CSS</title>
+
+	<link rel="manifest" href="manifest.json">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="application-name" content="Dessin CSS">
+	<meta name="apple-mobile-web-app-title" content="Dessin CSS">
+	<meta name="msapplication-starturl" content="/index.html">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 	<link rel="stylesheet" href="style.css" />
 	<script>
 		function on_submit() {
@@ -26,6 +35,15 @@
 			get_hours();
 			setInterval(get_hours, 1000);
 		};
+
+		console.log('serviceWorker' in navigator);
+
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker
+				.register('/sw.js')
+				.then(serviceWorker => console.log('Service Worker registered: ' + serviceWorker))
+				.catch(error => console.log('Error registering the Service Worker: ' + error));
+		}
 	</script>
 </head>
 	<body>
