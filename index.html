@@ -18,38 +18,7 @@
 	        integrity="sha384-uONtBTCBzHKF84F6XvyC8S0gL8HTkAPeCyBNvfLfsqHh+Kd6s/kaS4BdmNQ5ktp1"
 	        crossorigin="anonymous"></script>
 
-	<script>
-		function on_submit() {
-			if(document.querySelector('input[type=search]').value !== '') {
-				window.location.href = 'https://www.google.com/search?q='
-					+ document.querySelector('input[type=search]').value.replace(' ', '+')
-					+ '&oq=' + document.querySelector('input[type=search]').value.replace(' ', '+');
-			}
-		}
-
-		window.onload = () => {
-			function get_hours() {
-				let date = new Date();
-				let hours = date.getHours();
-				let minutes = date.getMinutes();
-				let seconds = date.getSeconds();
-
-				document.querySelector('.hours').innerHTML = `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 60 ? '0' + seconds : seconds}`;
-			}
-
-			get_hours();
-			setInterval(get_hours, 1000);
-		};
-
-		console.log('serviceWorker' in navigator);
-
-		if ('serviceWorker' in navigator) {
-			navigator.serviceWorker
-				.register('/sw.js')
-				.then(serviceWorker => console.log('Service Worker registered: ' + serviceWorker))
-				.catch(error => console.log('Error registering the Service Worker: ' + error));
-		}
-	</script>
+	<script src="script.js"></script>
 </head>
 	<body>
 		<div class="search">
