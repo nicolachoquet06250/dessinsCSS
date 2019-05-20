@@ -11,3 +11,11 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
 	console.log('Service Worker activating.');
 });
+
+self.addEventListener('fetch', event => {
+	// Stratégie Cache-First
+	event.respondWith(
+		caches.match(event.request) // On vérifie si la requête a déjà été mise en cache
+			.then(cached => cached || fetch(event.request)) // sinon on requête le réseau
+	);
+});
