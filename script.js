@@ -20,8 +20,6 @@ window.onload = () => {
 	setInterval(get_hours, 1000);
 };
 
-console.log('serviceWorker' in navigator);
-
 if ('serviceWorker' in navigator) {
 	navigator.serviceWorker
 		.register('/sw.js')
