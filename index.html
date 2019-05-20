@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dessin d'une platine en CSS</title>
+	<link rel="stylesheet" href="style.css" />
+	<script>
+		function on_submit() {
+			if(document.querySelector('input[type=search]').value !== '') {
+				window.location.href = 'https://www.google.com/search?q='
+					+ document.querySelector('input[type=search]').value.replace(' ', '+')
+					+ '&oq=' + document.querySelector('input[type=search]').value.replace(' ', '+');
+			}
+		}
+
+		window.onload = () => {
+			function get_hours() {
+				let date = new Date();
+				let hours = date.getHours();
+				let minutes = date.getMinutes();
+				let seconds = date.getSeconds();
+
+				document.querySelector('.hours').innerHTML = `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 60 ? '0' + seconds : seconds}`;
+			}
+
+			get_hours();
+			setInterval(get_hours, 1000);
+		};
+	</script>
+</head>
+	<body>
+		<div class="search">
+			<div class="search-container">
+				<input type="image" src="images/logo-google.png" onclick="on_submit()" />
+				<input type="search" placeholder="oogle" />
+			</div>
+		</div>
+		<div class="hours"></div>
+		<div class="gradient-background">
+			<div class="turntable">
+				<div class="disc">
+					<div class="disc-reflection-left">
+					</div>
+					<div class="disc-reflection-right">
+					</div>
+					<div class="disc-groove">
+					</div>
+					<div class="label spin">
+						<div class="disc-font disc-title">
+							CSS rocks!
+						</div>
+						<div class="disc-font disc-group">
+							wubba lubba dub dub
+						</div>
+					</div>
+				</div>
+				<div class="buttons">
+				</div>
+				<div class="tone-arm oscillating">
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
