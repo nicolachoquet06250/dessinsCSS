@@ -254,3 +254,7 @@ html {
     color: white;
     font-weight: bold;
 }
+
+#setup_button {
+    display: none;
+}
