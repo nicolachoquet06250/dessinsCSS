@@ -6,13 +6,15 @@ function on_submit() {
 	}
 }
 
-function installApp() {
+function installApp(e) {
 	// Show the prompt
+	let deferredPrompt = e;
 	deferredPrompt.prompt();
+	let setupButton = document.querySelector('#setup_button');
 	setupButton.disabled = true;
 	// Wait for the user to respond to the prompt
 	deferredPrompt.userChoice
-		.then((choiceResult) => {
+		.then(choiceResult => {
 			if (choiceResult.outcome === 'accepted') {
 				console.log('PWA setup accepted');
 				// hide our user interface that shows our A2HS button
@@ -46,11 +48,14 @@ window.onload = () => {
 		// Stash the event so it can be triggered later.
 		deferredPrompt = e;
 		console.log("beforeinstallprompt fired");
-		if (setupButton == undefined) {
+		if (setupButton === undefined) {
 			setupButton = document.getElementById("setup_button");
+			setupButton.addEventListener('click', installApp);
 		}
 		// Show the setup button
-		setupButton.style.display = "inline";
+		setupButton.style.position = 'relative';
+		setupButton.style.zIndex = '999';
+		setupButton.style.display = "block";
 		setupButton.disabled = false;
 	});
 
